@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body class="container">
+    <header>
+      <h1 class="text-center">Expense Tracker</h1>
+    </header>
+    <input type="text" id="id" hidden>
+    <div class="card">
+      <div class="card-body">
+      <form id="my-form">
+        <h2 class="card-title text-center">Add Expense</h2>
+        <div class="row">
+          <div class="col">
+            <label for="expenseAmount">Choose Amount:</label>
+            <input type="number" class="form-control" id="expenseAmount">
+          </div>
+          <div class="col">
+            <label for="expDescription">Choose Description:</label>
+            <input type="text" class="form-control" id="expDescription">
+          </div>
+          <div class="col">
+            <label for="expenseType">Expense Type:</label>
+            <select class="form-control" id="expenseType">
+              <option selected disabled></option>
+              <option>Daily Food</option>
+              <option>Daily Travel</option>
+              <option>Daily Miscalaneous</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <input class="btn btn-primary btn-lg btn-block" type="button" value="Submit">
+      </form>
+      </div>
+      <ul id="expenses"></ul>
+
+      <!-- <ul class="items">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li>
+      </ul> -->
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script src="expenseTracker.js"></script>
+  </body>
+</html>

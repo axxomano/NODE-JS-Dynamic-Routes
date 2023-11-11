@@ -1,0 +1,2639 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CAG Tool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Open+Sans:wght@300&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
+</head>
+<style type="text/css">
+/*sharepoint styles start*/
+.editor__console-logs li pre{
+    margin-bottom: 0;
+}
+.modal-open .container-fluid, .modal-open  .container {
+    -webkit-filter: blur(5px) grayscale(90%);
+}
+.editor__code {
+    height: 17em !important;
+}
+    #sideNavBox {  
+        display: none;  
+    }  
+#s4-titlerow{
+        display: none !important;
+}    
+#titleAreaBox  {  
+        display: none;  
+    }  
+#contentRow{
+padding-top:0px  !important;
+}
+
+.ms-webpartPage-root {
+    border-spacing: 4px;
+}
+
+.editor__wrapper {
+    width: 100 !important;
+}
+
+#contentBox {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+#daspan{
+  font-size: 20px;
+  font-weight:bold;
+}
+/*sharepoint styles end*/
+
+
+  .fa,.fa-solid{
+    color: #0099e0 !important;
+  }
+  .header{
+    padding: 5px;
+    background:rgb(255 255 255 / 95%)
+  }
+  #header{
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 3.2rem;
+    color: #223c6b;
+      margin-bottom: 0;
+  }
+  #header span{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+    font-size: 0.4em;
+    padding-top: 3px;
+  }
+  h2{
+    font-family: 'Poppins', sans-serif;;
+    font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      position: relative;
+    color: #fff;
+  }
+.section-title h2::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 240px;
+    height: 1px;
+    background: #fefcff;
+    bottom: 1px;
+    left: 0px;
+}
+  .section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 146px;
+    height: 3px;
+    background: #47b2e4;
+    bottom: 0;
+    left: 40px;
+}
+  .ms-rte-embedcode{
+    font-family: "Open Sans", sans-serif;
+      color: #444444;
+      background-color: #e5e5f7;
+background-image: radial-gradient(#a9adfe 0.5px, #223c6b 0.5px);
+*/background-size: 10px 10px;
+  }
+.table{
+  line-height: 2.4;
+    --bs-table-accent-bg: none;
+}
+.card-title{
+      font-weight: 600;
+    font-size: 1.4rem;
+    font-family: 'Open Sans';
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: #37517e;
+}
+.table tbody{
+  background-color: white
+}
+.btn-learn-more{
+  font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 4px;
+    transition: 0.3s;
+    line-height: 1;
+    color: #0e6f9d;
+    animation-delay: 0.8s;
+    margin-top: 6px;
+    border: 2px solid #0e6f9d;
+  text-decoration: none;
+}
+.btn-learn-more:hover{
+    color: white;
+    background-color:#0e6f9d; 
+}
+.table-info{
+   --bs-table-bg: #0e6f9d !important;
+   color: white
+}
+.card{
+  --bs-card-height: 100%;
+}
+.pattern-diagonal-lines-sm{
+background-image: repeating-linear-gradient(45deg, currentColor 0, currentColor 1px, transparent 0, transparent 250%)
+}
+
+.silverHeader {
+/*  color: #dedede;
+  font-weight: bold;
+*/  text-decoration: none;
+/*  text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #a1a1a1;
+*/  
+/*
+box-shadow:
+    2px 2px 0.5em rgba(155, 155, 155, 0.55),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.21)
+  ;*/
+/*  border: 1px solid #cacaca;
+*/  background:
+  -moz-linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+  background:
+  -webkit-linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+  background:
+  -o-linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+  background:
+  linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+}
+
+.silverCard {
+ background:
+  -moz-linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+  background:
+  -webkit-linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+  background:
+  -o-linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+  background:
+  linear-gradient(
+    #ffffff,
+    #e3e3e3
+  );
+}
+
+.fa-trash:hover{
+  color: red !important
+}
+
+.fa-circle-check{
+  color: green !important
+}
+/*.form-select{
+  border: 0.25px solid;
+}*/
+
+#inputTemp3,#inputTemp2,#inputTemp1{
+  background-color:#fafafa !important;
+  color: black;
+    font-weight: bold;
+}
+
+</style>
+<body id="bsBody">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+<div class="shadow header silverHeader">
+  <h1 class="text-center " id="header">C<span>orrective</span> A<span>ction</span>  G<span>uidelines</span> </h1>
+<!--  <h4 class="text-center">TRACKER</h4>
+ -->
+</div>
+
+<div class="container">
+  <div class="row" style="margin-top: 30px;">
+  <div class="alert alert-warning" id="success-alert" style="display:none">
+    <strong>Selection Needed! </strong> Please select the highlighted inputs.
+  </div>
+    <div class="row" style=" margin-bottom: 30px;">
+    <div class="section-title col-4">
+          <h2>Manager View</h2>
+    </div>
+    <div class="col">
+      <select class="form-select float-end" aria-label="Default select example" id="year">
+        <option selected disabled required>YYYY</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-select float-end" aria-label="Default select example" id="mon">
+        <option selected disabled>Month</option>
+        <option value="1">Jan</option>
+        <option value="2">Feb</option>
+        <option value="3">Mar</option>
+        <option value="4">Apr</option>
+        <option value="5">May</option>
+        <option value="6">Jun</option>
+        <option value="7">Jul</option>
+        <option value="8">Aug</option>
+        <option value="9">Sep</option>
+        <option value="10">Oct</option>
+        <option value="11">Nov</option>
+        <option value="12">Dec</option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-select float-end" aria-label="Default select example" id="week">
+        <option selected disabled>Week</option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-select float-end" aria-label="Default select example" id="daFilter">
+        <option selected disabled>Week's Filter</option>
+<!--        <option value="1">DAs With Issues</option>
+ -->        <option value="2" >Not Actioned</option>
+        <option value="3">All</option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-select float-end" aria-label="Default select example" id="daLogin">
+        <option selected disabled>DA Login</option>
+      </select>
+    </div>
+    <div class="col" style="width: 6.566667% !important; font-weight:bold;">
+          <button type="button" class="btn btn-info float-end" style="color: white;" id="find">FIND</button>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="shadow card-body">
+          <h5 class="card-title"><i class="fa fa-user-clock" style="--fa-primary-color: #00a7bd; --fa-secondary-color: #4284f5;"></i>  Compliance Issues</h5>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+        <table class="table table-bordered table-hover" id="compTable">
+              <thead class="table-info">
+                  <tr>
+                    <th scope="col">Compliance issues</th>
+                    <th scope="col" class="text-center">Wk 1</th>
+                    <th scope="col" class="text-center">Wk 2</th>
+                    <th scope="col" class="text-center">Wk 3</th>
+                    <th scope="col" class="text-center">Wk 4</th>
+                    <th scope="col" class="text-center">Wk 5</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Break Non-Adherence Instances</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Break Non-Adherence Mins</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Schedule Non-Adherence Instances</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Schedule Non-Adherence Hours</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Late Login instance</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Unplanned leaves (days)</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Cab No-Show</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Other</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+
+      <div class="card">
+        <div class="shadow card-body">
+          <div class="row">
+            <div class="col-8">
+                <h5 class="card-title"><i class="fa fa-list-check"></i>   Actions for Week <span id="wkNoSel"></span></h5>
+                 <h7>@<span id="daidSel"></span></h7>
+            </div>
+            <div class="col-4">
+              <!-- col-5-here -->
+              <button type="button" id="btnAdd" class="btn btn-primary float-end"><i class="fa fa-plus"></i> Add Issue</button>
+          </div>
+        </div>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+
+         <nav>
+              <div class="nav nav-tabs" id="issue-tab" role="tablist"></div>
+        </nav>
+        <div class="tab-content" id="issue-tabContent">
+
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="h-100 p-5 bg-light border rounded-3" style="margin-top: 10px;">
+                <p class="text-center">Attendance and Compliance issues will automatically populate here after clicking on <b>FIND</b><br><br> For adding other issues click on <b>Add Issue</b></p>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+        </div>
+
+            <div class="alert alert-info" id="tabs-alert" style="display:none">
+            <strong>Please fill all the issue tabs</strong>
+          </div>
+
+            <div class="alert alert-warning" id="save-alert" style="display:none">
+            <strong>Selection Needed! </strong> Please select the highlighted inputs.
+          </div>
+            <a href="#" class="btn-learn-more float-end" id="save" hidden>SAVE</a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- EndofRow -->
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="shadow card-body">
+          <h5 class="card-title"><i class="fa fa-building-shield"></i>   Policy Issues</h5>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+        <table class="table table-bordered table-hover" id="policyTable">
+                <thead class="table-info">
+                  <tr>
+                    <th scope="col">Policy issues</th>
+                    <th scope="col" class="text-center">Wk 1</th>
+                    <th scope="col" class="text-center">Wk 2</th>
+                    <th scope="col" class="text-center">Wk 3</th>
+                    <th scope="col" class="text-center">Wk 4</th>
+                    <th scope="col" class="text-center">Wk 5</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">PED Usage</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Chime Usage</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Quip Usage</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email Usage</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Other Issues</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="shadow card-body">
+          <div class="row">
+          <h5 class="card-title col-6"><i class="fa-solid fa-envelope-circle-check"></i>   Input Template</h5>
+
+          <div class="col-6" style="margin-top: -1px;">
+            <button class="btn-learn-more float-end" id="sendEmailBut" disabled>SEND EMAIL</button></div>
+
+<!--            <button type="button" onclick=sendemail();> SEND EMAIL </button> 
+           <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>  -->
+<nav>
+  <div class="nav nav-tabs" id="email-tab" role="tablist">
+    <button class="nav-link active" id="emailBut1" data-bs-toggle="tab" data-bs-target="#emailtab1" type="button" role="tab" aria-controls="emailtab1" aria-selected="true">To Employee</button>
+    <button class="nav-link" id="emailBut2" data-bs-toggle="tab" data-bs-target="#emailtab2" type="button" role="tab" aria-controls="emailtab2" aria-selected="false" tabindex="-1" disabled>To Ops</button>
+    <button class="nav-link" id="emailBut3" data-bs-toggle="tab" data-bs-target="#emailtab3" type="button" role="tab" aria-controls="emailtab3" aria-selected="false" tabindex="-1" disabled>To HR</button>
+  </div>
+</nav>
+<div class="tab-content" id="email-tabContent">
+  <div class="tab-pane fade active show" id="emailtab1" role="tabpanel" aria-labelledby="emailtab1">
+          <div class="row g-3 align-items-center">
+               <div class="col-auto">
+                        <p class="col-form-label">To :  <span id="emailAss-to"></span></p>
+                      </div>
+               <div class="col-auto">
+                        <p class="col-form-label">Cc :  <span id="emailAss-cc"></span></p>
+                      </div>
+                </div>
+          <textarea class="form-control emailText" id="inputTemp1" rows="14" disabled></textarea>
+
+  </div>
+  <div class="tab-pane fade" id="emailtab2" role="tabpanel" aria-labelledby="emailtab2">
+          <div class="row g-3 align-items-center">
+               <div class="col-auto">
+                        <p class="col-form-label">To :  <span id="emailOm-to"></span></p>
+                      </div>
+               <div class="col-auto">
+                        <p class="col-form-label">Cc :  <span id="emailOm-cc"></span></p>
+                      </div>
+                </div>
+          <textarea class="form-control emailText" id="inputTemp2" rows="14" disabled></textarea>
+  </div>
+  <div class="tab-pane fade" id="emailtab3" role="tabpanel" aria-labelledby="emailtab3">
+          <div class="row g-3 align-items-center">
+               <div class="col-auto">
+                        <p class="col-form-label">To :  <span id="emailHr-to">
+                          <span class="badge bg-secondary text-wrap">kmrigank;</span>
+                          <span class="badge bg-secondary text-wrap">karthcz;</span>
+                        </span></p>
+                      </div>
+               <div class="col-auto">
+                        <p class="col-form-label">Cc :  <span id="emailHr-cc">
+                        </span></p>
+                      </div>
+                </div>
+          <textarea class="form-control emailText" id="inputTemp3" rows="14" disabled></textarea>
+  </div>
+</div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/b217640fc3.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+  // Map your choices to your option value
+
+/*window.addEventListener('load', function() {
+  var savedHTML = sessionStorage.getItem('savedHTML');
+  if (savedHTML) {
+    document.documentElement.innerHTML = savedHTML;
+  }
+});*/
+
+$( document ).ready(function() {
+/*  localStorage.setItem('selectedYear', yearGlobal);
+  localStorage.setItem('selectedMonth', monthVal);
+  localStorage.setItem('selectedWeek', weekSelGlobal);*/
+
+  var storedWeek = sessionStorage.getItem('selectedWeek');
+  var storedMonth= sessionStorage.getItem('selectedMonth');
+  var storedYear = sessionStorage.getItem('selectedYear');
+
+
+
+
+if(storedWeek){
+  console.log(storedWeek,storedMonth,storedYear,'local storage')
+  $('#mon').val(storedMonth)
+  $('#year').val(storedYear)
+    changeWeeks()
+    setTimeout(function(){
+        $('#week').val(storedWeek)
+            $('#daFilter').val(2)
+            //console.log(daLogins)
+            //let m = "prasujit"
+            //MenuGetListItems(m,26)
+
+            let m = _spPageContextInfo.userLoginName.substr(4)
+            MenuGetListItems(m,storedWeek)
+      },1000);
+}
+  else{
+  currentDate = new Date();
+  currentYear = currentDate.getFullYear()
+  currentMonth = currentDate.getMonth() + 1;
+
+  startDate = new Date(currentYear, 0, 1);
+  var days = Math.floor((currentDate - startDate) /
+      (24 * 60 * 60 * 1000));
+   
+  var weekNumber = Math.ceil(days / 7);
+
+    $('#year').val(currentYear)
+    $('#mon').val(currentMonth)
+    console.log(weekNumber,currentMonth,currentYear,'Not local storage')
+    changeWeeks()
+    setTimeout(function(){
+        $('#week').val(weekNumber)
+            $('#daFilter').val(2)
+            //console.log(daLogins)
+            let m = _spPageContextInfo.userLoginName.substr(4)
+            //let m = "prasujit"
+            MenuGetListItems(m,weekNumber)
+      },1000);
+}
+});
+  
+var daLogins = [];
+
+
+$('.date input').datepicker({
+      todayHighlight:true
+});
+
+$('.date input').datepicker('setDate', 'now');
+
+
+</script>
+
+<!-- Autosize textarea -->
+<script type="text/javascript">
+  /*!
+    Autosize v1.18.1 - 2013-11-05
+  Automatically adjust textarea height based on user input.
+  (c) 2013 Jack Moore - http://www.jacklmoore.com/autosize
+  license: http://www.opensource.org/licenses/mit-license.php
+*/
+(function ($) {
+  var
+  defaults = {
+    className: 'autosizejs',
+    append: '',
+    callback: false,
+    resizeDelay: 10
+  },
+
+  // border:0 is unnecessary, but avoids a bug in Firefox on OSX
+  copy = '<textarea tabindex="-1" style="position:absolute; top:-999px; left:0; right:auto; bottom:auto; border:0; padding: 0; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; word-wrap:break-word; height:0 !important; min-height:0 !important; overflow:hidden; transition:none; -webkit-transition:none; -moz-transition:none;"/>',
+
+  // line-height is conditionally included because IE7/IE8/old Opera do not return the correct value.
+  typographyStyles = [
+    'fontFamily',
+    'fontSize',
+    'fontWeight',
+    'fontStyle',
+    'letterSpacing',
+    'textTransform',
+    'wordSpacing',
+    'textIndent'
+  ],
+
+  // to keep track which textarea is being mirrored when adjust() is called.
+  mirrored,
+
+  // the mirror element, which is used to calculate what size the mirrored element should be.
+  mirror = $(copy).data('autosize', true)[0];
+
+  // test that line-height can be accurately copied.
+  mirror.style.lineHeight = '99px';
+  if ($(mirror).css('lineHeight') === '99px') {
+    typographyStyles.push('lineHeight');
+  }
+  mirror.style.lineHeight = '';
+
+  $.fn.autosize = function (options) {
+    if (!this.length) {
+      return this;
+    }
+
+    options = $.extend({}, defaults, options || {});
+
+    if (mirror.parentNode !== document.body) {
+      $(document.body).append(mirror);
+    }
+
+    return this.each(function () {
+      var
+      ta = this,
+      $ta = $(ta),
+      maxHeight,
+      minHeight,
+      boxOffset = 0,
+      callback = $.isFunction(options.callback),
+      originalStyles = {
+        height: ta.style.height,
+        overflow: ta.style.overflow,
+        overflowY: ta.style.overflowY,
+        wordWrap: ta.style.wordWrap,
+        resize: ta.style.resize
+      },
+      timeout,
+      width = $ta.width();
+
+      if ($ta.data('autosize')) {
+        // exit if autosize has already been applied, or if the textarea is the mirror element.
+        return;
+      }
+      $ta.data('autosize', true);
+
+      if ($ta.css('box-sizing') === 'border-box' || $ta.css('-moz-box-sizing') === 'border-box' || $ta.css('-webkit-box-sizing') === 'border-box'){
+        boxOffset = $ta.outerHeight() - $ta.height();
+      }
+
+      // IE8 and lower return 'auto', which parses to NaN, if no min-height is set.
+      minHeight = Math.max(parseInt($ta.css('minHeight'), 10) - boxOffset || 0, $ta.height());
+
+      $ta.css({
+        overflow: 'hidden',
+        overflowY: 'hidden',
+        wordWrap: 'break-word', // horizontal overflow is hidden, so break-word is necessary for handling words longer than the textarea width
+        resize: ($ta.css('resize') === 'none' || $ta.css('resize') === 'vertical') ? 'none' : 'horizontal'
+      });
+
+      // The mirror width must exactly match the textarea width, so using getBoundingClientRect because it doesn't round the sub-pixel value.
+      function setWidth() {
+        var style, width;
+        
+        if ('getComputedStyle' in window) {
+          style = window.getComputedStyle(ta, null);
+          width = ta.getBoundingClientRect().width;
+
+          $.each(['paddingLeft', 'paddingRight', 'borderLeftWidth', 'borderRightWidth'], function(i,val){
+            width -= parseInt(style[val],10);
+          });
+
+          mirror.style.width = width + 'px';
+        }
+        else {
+          // window.getComputedStyle, getBoundingClientRect returning a width are unsupported and unneeded in IE8 and lower.
+          mirror.style.width = Math.max($ta.width(), 0) + 'px';
+        }
+      }
+
+      function initMirror() {
+        var styles = {};
+
+        mirrored = ta;
+        mirror.className = options.className;
+        maxHeight = parseInt($ta.css('maxHeight'), 10);
+
+        // mirror is a duplicate textarea located off-screen that
+        // is automatically updated to contain the same text as the
+        // original textarea.  mirror always has a height of 0.
+        // This gives a cross-browser supported way getting the actual
+        // height of the text, through the scrollTop property.
+        $.each(typographyStyles, function(i,val){
+          styles[val] = $ta.css(val);
+        });
+        $(mirror).css(styles);
+
+        setWidth();
+
+        // Chrome-specific fix:
+        // When the textarea y-overflow is hidden, Chrome doesn't reflow the text to account for the space
+        // made available by removing the scrollbar. This workaround triggers the reflow for Chrome.
+        if (window.chrome) {
+          var width = ta.style.width;
+          ta.style.width = '0px';
+          var ignore = ta.offsetWidth;
+          ta.style.width = width;
+        }
+      }
+
+      // Using mainly bare JS in this function because it is going
+      // to fire very often while typing, and needs to very efficient.
+      function adjust() {
+        var height, original;
+
+        if (mirrored !== ta) {
+          initMirror();
+        } else {
+          setWidth();
+        }
+
+        mirror.value = ta.value + options.append;
+        mirror.style.overflowY = ta.style.overflowY;
+        original = parseInt(ta.style.height,10);
+
+        // Setting scrollTop to zero is needed in IE8 and lower for the next step to be accurately applied
+        mirror.scrollTop = 0;
+
+        mirror.scrollTop = 9e4;
+
+        // Using scrollTop rather than scrollHeight because scrollHeight is non-standard and includes padding.
+        height = mirror.scrollTop;
+
+        if (maxHeight && height > maxHeight) {
+          ta.style.overflowY = 'scroll';
+          height = maxHeight;
+        } else {
+          ta.style.overflowY = 'hidden';
+          if (height < minHeight) {
+            height = minHeight;
+          }
+        }
+
+        height += boxOffset;
+
+        if (original !== height) {
+          ta.style.height = height + 'px';
+          if (callback) {
+            options.callback.call(ta,ta);
+          }
+        }
+      }
+
+      function resize () {
+        clearTimeout(timeout);
+        timeout = setTimeout(function(){
+          var newWidth = $ta.width();
+
+          if (newWidth !== width) {
+            width = newWidth;
+            adjust();
+          }
+        }, parseInt(options.resizeDelay,10));
+      }
+
+      if ('onpropertychange' in ta) {
+        if ('oninput' in ta) {
+          // Detects IE9.  IE9 does not fire onpropertychange or oninput for deletions,
+          // so binding to onkeyup to catch most of those occasions.  There is no way that I
+          // know of to detect something like 'cut' in IE9.
+          $ta.on('input.autosize keyup.autosize', adjust);
+        } else {
+          // IE7 / IE8
+          $ta.on('propertychange.autosize', function(){
+            if(event.propertyName === 'value'){
+              adjust();
+            }
+          });
+        }
+      } else {
+        // Modern Browsers
+        $ta.on('input.autosize', adjust);
+      }
+
+      // Set options.resizeDelay to false if using fixed-width textarea elements.
+      // Uses a timeout and width check to reduce the amount of times adjust needs to be called after window resize.
+
+      if (options.resizeDelay !== false) {
+        $(window).on('resize.autosize', resize);
+      }
+
+      // Event for manual triggering if needed.
+      // Should only be needed when the value of the textarea is changed through JavaScript rather than user input.
+      $ta.on('autosize.resize', adjust);
+
+      // Event for manual triggering that also forces the styles to update as well.
+      // Should only be needed if one of typography styles of the textarea change, and the textarea is already the target of the adjust method.
+      $ta.on('autosize.resizeIncludeStyle', function() {
+        mirrored = null;
+        adjust();
+      });
+
+      $ta.on('autosize.destroy', function(){
+        mirrored = null;
+        clearTimeout(timeout);
+        $(window).off('resize', resize);
+        $ta
+          .off('autosize')
+          .off('.autosize')
+          .css(originalStyles)
+          .removeData('autosize');
+      });
+
+      // Call adjust in case the textarea already contains text.
+      adjust();
+    });
+  };
+}(window.jQuery || window.$)); // jQuery or jQuery-like library, such as Zepto
+  
+$('.desc').autosize();
+
+</script>
+<script type="text/javascript">
+
+var weeksCount = function(year, month_number) {
+  var firstOfMonth = new Date(year, month_number - 1, 1);
+  var day = firstOfMonth.getDay() || 6;
+  day = day === 1 ? 0 : day;
+  if (day) { day-- }
+  var diff = 7 - day;
+  var lastOfMonth = new Date(year, month_number, 0);
+  var lastDate = lastOfMonth.getDate();
+  if (lastOfMonth.getDay() === 1) {
+    diff--;
+  }
+  var result = Math.ceil((lastDate - diff) / 7);
+  return result;
+};
+
+
+function getMonthFromString(mon){
+   return new Date(Date.parse(mon +" 1, 2012")).getMonth()+1
+}
+
+
+
+  $("#mon").change(changeWeeks);
+  $("#year").change(changeWeeks);
+
+/*$('.tmLpselect .LPSelect').prop('selectedIndex',0);
+$('.tmLpselect .selText').val('')
+
+$('.daLpselect .LPSelect').prop('selectedIndex',0);
+$('.daLpselect .selText').val('')*/
+
+      /* let yearMon = this.value;
+      const theMon = yearMon.slice(0,3);
+      const theMonNum = getMonthFromString(theMon)
+      const theYear = yearMon.slice(4);*/
+function changeWeeks(){
+
+    $('#daLogin option:not(:first)').remove()
+    $('#compTable tbody tr td').empty();
+    $('#policyTable tbody tr td').empty();
+    $('#daidSel').empty();
+
+    $('#issue-tab').empty()
+          $('#issue-tabContent').empty()
+            $('.h-100').hide()
+          $('#save').attr('hidden',false)   
+  $('#inputTemp1').val('')
+  $('#inputTemp2').val('')
+  $('#inputTemp3').val('')
+
+  $('#emailBut1').tab('show');
+  
+      const theMon = $('#mon option:selected').val();
+      const theMonNum = getMonthFromString(theMon)
+
+
+      const theYear = $('#year option:selected').val();
+
+
+      //"July 21, 1983 01:15:00"
+                   //define a date object variable that will take the current system date  
+       monFirstDt = new Date(theMon+ " 1,  "+theYear);  
+ 
+    //alert(theMon+ " 1,  "+theYear)
+      //find the year of the current date  
+       var oneJan =  new Date(monFirstDt.getFullYear(), 0, 1);  
+   
+       // calculating number of days in given year before a given date  
+       var numberOfDays =  Math.floor((monFirstDt - oneJan) / (24 * 60 * 60 * 1000));  
+   
+       // adding 1 since to current date and returns value starting from 0  
+       var WkNoOfMonth = Math.ceil(( monFirstDt.getDay() + 1 + numberOfDays) / 7);    
+ 
+
+
+   const NoOfWeeks = weeksCount(theYear,theMonNum)
+  const endWeekNo = (WkNoOfMonth-1)+NoOfWeeks
+
+/*    $("#scoreTable tbody tr td").html("").removeClass();
+    $("#metricTable tbody tr td").html("").removeClass();*/
+      let wkNum = WkNoOfMonth
+
+    $("#compTable thead tr th:not(:first)").each(function(){
+      $(this).html("-");
+      if(wkNum<=endWeekNo){
+        $(this).html("Wk " +wkNum);
+        wkNum++
+      }
+    });
+    wkNum = WkNoOfMonth
+    $('#week').find('option').not(':first').remove();
+
+     $("#policyTable thead tr th:not(:first)").each(function(){
+       $(this).html("-");
+      if(wkNum<=endWeekNo){
+        $(this).html("Wk " +wkNum);
+        //<option value="1">Week 1</option>
+      $('#week').append("<option value=" + wkNum + ">Wk " + wkNum + "</option>");
+        wkNum++
+      }
+    });
+    wkNum = WkNoOfMonth
+    console.log('wkNum',wkNum)
+     $("#policyTable thead tr th:not(:first)").each(function(){
+       $(this).html("-");
+      if(wkNum<=endWeekNo){
+        $(this).html("Wk " +wkNum);
+        wkNum++
+      }
+    });
+  };
+
+var colDriver,
+  nodevCount,
+  weekSel;
+
+function resetEmail(){
+$('.badge').empty()
+  $('#inputTemp1').val('')
+  $('#inputTemp2').val('')
+  $('#inputTemp3').val('')
+
+  $('#emailBut1').tab('show');
+  //$('#emailBut1').attr('disabled',true)
+  $('#emailBut2').attr('disabled',true)
+  $('#emailBut3').attr('disabled',true)
+
+  $('#sendEmailBut').attr('disabled',true)
+
+  $('#emailAss-to').text('')
+  $('#emailAss-cc').text('')
+
+  $('#emailOm-to').text('')
+  $('#emailOm-to').text('')
+
+  $('#emailHr-cc').text('')
+
+}
+
+function findingFunction(){
+
+      resetEmail()
+
+
+      weekSel =  $("#week option:selected").val()
+      $("#daidSel").text($('#daLogin option:selected').val())
+      $("#wkNoSel").text(weekSel)
+
+      let valid = true;
+
+        if ($('#daLogin option:selected').attr('disabled')) {
+          $("#daLogin").effect("highlight", {}, 4000);
+           valid = false;
+        }
+
+        if ($('#year option:selected').attr('disabled')) {
+          $("#year").effect("highlight", {}, 4000);
+           valid = false;
+        }    
+
+        if ($('#mon option:selected').attr('disabled')) {
+          $("#mon").effect("highlight", {}, 4000);
+           valid = false;
+        }
+
+
+        if ($('#week option:selected').attr('disabled')) {
+          $("#week").effect("highlight", {}, 4000);
+           valid = false;
+        }    
+
+
+        if( !valid){
+                 $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                $("#success-alert").slideUp(500);
+              });
+        }  
+        else{
+          //call CAML function
+              console.log('executing finding function')
+            let start = Number($("#week option:nth-child(2)").val())
+            let end = Number($("#week option:selected").val())
+            let da = $("#daLogin option:selected").val()
+            colDriver = 2;
+            nodevCount = 0;
+          $('#compTable tbody tr td').empty();
+          $('#policyTable tbody tr td').empty();
+    /*        for(let i=start;i<=end;i++){ //i is week number--> loop from start till selected index
+              console.log('i',i)*/
+          //daidGlobal = String(da).trim();
+
+            getListItems(da,start,end);
+            //getListItems(daidGlobal,start,end);
+          /*        }*/
+
+          $('#issue-tab').empty()
+          $('#issue-tabContent').empty()
+            $('.h-100').hide()
+          $('#save').attr('hidden',false)   
+       }//
+}
+$("#find").click(function(){
+resetEmail()
+if($('#sendEmailBut').attr('disabled') != "disabled"){
+$.confirm({
+    title: 'Alert!',
+    content: 'You have unsent email for @'+daidGlobal+'! Do you want to continue?',
+    buttons: {
+      confirm: function () {
+        findingFunction()
+      },
+     cancel: function () {
+            $.alert('Canceled!');
+        }
+    }
+});
+}//if
+else{
+ findingFunction();
+}
+
+});
+
+
+var exbrMinsAr = []
+var exbrInsAr = []
+var snaHrsAr = []
+var snaInsAr = []
+var unplAr = []
+var lateLoginAr = []
+
+$("#save").click(function(){
+              $('#sendEmailBut').attr('disabled',false)
+                let valid = true;
+          let unselTabs = new Set()
+          $('table > tbody > tr > td > div > textarea').each(function(index){
+            if($(this).val().trim()=='') {
+              $(this).effect("highlight", {}, 4150);
+              valid = false;
+                  unselTabs.add($(this).parents('.tab-pane').attr('id').substr(3))
+            }
+          });
+
+          $('table > tbody > tr > td > select option:selected').each(function(index){
+             if($(this).attr('disabled')) {
+              $(this).parent().effect("highlight", {}, 4150);
+                valid = false;
+                  //effect("highlight", {}, 4150);
+                  unselTabs.add($(this).parents('.tab-pane').attr('id').substr(3))
+             }
+          });
+
+          let tabsList = "Please fill Issue(s) :  "
+          unselTabs.forEach(function(x, i, a){
+              let thisTab = '#tabBut'+x;
+              $(thisTab).css('background-color', 'lightyellow');
+              setTimeout(function() {
+                      $(thisTab).css('background-color', '');
+                  }, 3000);
+                tabsList +=  x + "  "
+          });
+
+          /*    if ($('select option:selected').attr('disabled')) {
+              $("this").effect("highlight", {}, 4150);
+                 valid = false;
+              }    */
+
+                if( !valid){
+                       $("#save-alert").fadeTo(2000, 500).slideUp(500, function() {
+                      $("#save-alert").slideUp(500);
+                    });
+                       $("#save-alert").fadeTo(2000, 500).slideUp(500, function() {
+                      $("#save-alert").slideUp(500);
+                    });
+                       $('#tabs-alert strong').text(tabsList)
+
+                       $("#tabs-alert").fadeTo(2000, 500).slideUp(500, function() {
+                      $("#tabs-alert").slideUp(1000);
+                    });
+                       $("#tabs-alert").fadeTo(2000, 500).slideUp(500, function() {
+                      $("#tabs-alert").slideUp(1000);
+                    });
+                }
+                else {
+                  //call CAML function
+                  //for each week need to call the CAML function--> Each week till selected week in the dropdown
+                $.confirm({
+                title: 'Are you sure you want to save?',
+                content: "After saving you can't edit the content of this section. Email content will be generated" ,
+                buttons: {
+                    confirm: function () {
+                          if(theUniqueID)
+                              saveCaml(theUniqueID);
+                          else
+                            console.log('ID not found')
+                          //issuesFetched = false
+                          },
+                    cancel: function () {
+                        $.alert('Canceled!');
+                    }
+                }
+              });
+              }//else
+        });
+
+            
+
+
+//CSS to SP header and sidebar
+$("#suiteBarDelta").css("display", "none");
+$("#s4-ribbonrow").css("display", "none");
+
+
+
+$(document).keydown(function(e){
+      if( e.which === 77 && e.ctrlKey && e.shiftKey ){
+$("#suiteBarDelta").css("display", "block");
+$("#s4-ribbonrow").css("display", "block");
+      }   
+}); 
+</script>
+<!-- SP-QUERY-START -->
+<script>
+/*$(function () {
+ExecuteOrDelayUntilScriptLoaded(retrieveListItems, "sp.js");
+});*/
+var collListItem;
+
+function retrieveListItems() {
+var clientContext = new SP.ClientContext();
+var oList = clientContext.get_web().get_lists().getByTitle('CAGmain');
+var camlQuery = new SP.CamlQuery();
+collListItem = oList.getItems(camlQuery);
+clientContext.load(collListItem);
+clientContext.executeQueryAsync(
+Function.createDelegate(this, this.onQueryRetrieved),Function.createDelegate(this, this.onQueryFailed)
+);
+}
+
+function onQueryRetrieved(sender, args) {
+var listItemEnumerator = collListItem.getEnumerator();
+while (listItemEnumerator.moveNext()) {
+  var oListItem = listItemEnumerator.get_current();
+  let da = oListItem.get_item('Title');
+    $('#daLogin').append('<option>' + da + '</option>');
+}
+}
+
+function onQueryFailed(sender, args) {
+alert('Request failed. ' + args.get_message() +
+'\n' + args.get_stackTrace());
+}
+</script>
+<script>
+var collListItem;
+var d = new Date();
+var strDate = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
+var issueDes = '<div class="form-group">    <textarea class="desc" class="form-control"></textarea>  </div>'
+var theUniqueID;
+var weekSelGlobal,
+  daidGlobal,
+  monthGlobal,
+  yearGlobal,
+  tmidGlobal,
+  omidGlobal,
+  $generatedText,
+  $writtenText;
+var issuesGlobalJson = {}
+var issuesGlobalArray = []
+var emailTemp;
+var emailTemp2;
+var emailTemp3;
+var issuesFetched = false;
+
+//FLAGS
+var TDatNCNSflag = false
+var TDatNonflag = false
+var TDatUnplflag = false
+var TDprCompBrflag = false
+var TDprCompScNonflag = false
+var TDprOtherDisCoflag = false //Not needed
+var TDprOtherNonSOPflag = false
+var TDprOtherOtherflag = false
+
+var TDpoOpsPEDflag = false
+var TDpoOpsChimeflag = false
+var TDpoOpsQuipflag = false
+var TDpoOpsEmailflag = false
+var TDpoHROtherflag = false
+
+//var POrnpTDflag = false
+//COUNTS
+//FLAGS
+/*var TDatNCNScount
+var TDatNoncount
+var TDatUnplcount
+var TDprCompBrcount
+var TDprCompScNoncount
+var TDprOtherDisCocount //Not needed
+var TDprOtherNonSOPcount
+var TDprOtherOthercount 
+var TDpoOpsPEDcount
+var TDpoOpsChimecount
+var TDpoOpsQuipcount
+var TDpoOpsEmailcount
+var TDpoHROthercount*/
+
+var TDatNCNScount= 1
+var TDatNoncount= 1
+var TDatUnplcount= 1
+var TDprCompBrcount= 1
+var TDprCompScNoncount= 1
+var TDprOtherDisCocount = 1
+var TDprOtherNonSOPcount= 1
+var TDprOtherOthercount = 1
+var TDpoOpsPEDcount= 1
+var TDpoOpsChimecount= 1
+var TDpoOpsQuipcount= 1
+var TDpoOpsEmailcount= 1
+var TDpoHROthercount= 1
+
+var thisWeekPED
+var thisWeekChime
+var thisWeekQuip
+var thisWeekEmail
+var thisWeekOther
+var thisWeekHr
+
+var oListItem
+
+function getListItems(x,sWeek,eWeek) {
+/*
+x -> associate
+y -> week
+
+*/
+    TDatNCNScount= 1
+    TDatNoncount= 1
+    TDatUnplcount= 1
+    TDprCompBrcount= 1
+    TDprCompScNoncount= 1
+    TDprOtherDisCocount = 1
+    TDprOtherNonSOPcount= 1
+    TDprOtherOthercount = 1
+    TDpoOpsPEDcount= 1
+    TDpoOpsChimecount= 1
+    TDpoOpsQuipcount= 1
+    TDpoOpsEmailcount= 1
+    TDpoHROthercount= 1
+
+weekSelGlobal = $("#week option:selected").val()
+
+monthGlobal = $("#mon option:selected").text()
+
+let monthVal = $("#mon option:selected").val()
+
+yearGlobal = $("#year option:selected").val()
+
+  sessionStorage.setItem('selectedYear', yearGlobal);
+  sessionStorage.setItem('selectedMonth', monthVal);
+  sessionStorage.setItem('selectedWeek', weekSelGlobal);
+
+
+issuesGlobalArray = [] //this is for gathering the selected week's variables and saving them
+issueGlobalJson = {} //this is for gathering the selected week's variables and saving them
+
+var clientContext = new SP.ClientContext();
+var oList = clientContext.get_web().get_lists().getByTitle('CAGmain');
+/*
+var camlQuery = new SP.CamlQuery();
+collListItem = oList.getItems(camlQuery);
+clientContext.load(collListItem);*/
+
+
+console.log('get',x,sWeek,eWeek)
+var camlQuery = new SP.CamlQuery();
+camlQuery.set_viewXml('<View><Query><Where><And><Eq><FieldRef Name=\'Title\'/>' + '<Value Type=\'Text\'>' + x + '</Value></Eq><And><Gt><FieldRef Name=\'devFact\'/>' + '<Value Type=\'Number\'>0</Value></Gt><And><Geq><FieldRef Name=\'cjdn\'/><Value Type=\'Number\'>' + sWeek + '</Value></Geq><Leq><FieldRef Name=\'cjdn\'/><Value Type=\'Number\'>' + (sWeek+5) + '</Value></Leq></And></And></And></Where></Query></View>'); 
+
+issuesGlobalArray[0] = x; //Associate
+issuesGlobalArray[1] =  eWeek
+issuesGlobalArray[2] =  strDate
+
+collListItem = oList.getItems(camlQuery);
+
+clientContext.load(collListItem);
+clientContext.executeQueryAsync(
+Function.createDelegate(this, this.onQueryGet),Function.createDelegate(this, this.onQueryFailed));
+}
+function TMoptionTwo(instance){
+  let sel;
+  switch(Number(instance)){
+    case 1:
+      sel = 'Verbal warning'
+      break;
+    case 2:
+      sel = 'Documented Feedback'
+      break;
+    case 3:
+      sel = 'First written warning'
+      break;
+    case 4:
+      sel = 'Second written warning'
+      break;
+    case 5:
+      sel = 'Final written warning'
+      break;
+    default:
+      sel = 'Verbal warning'
+      break;
+  }
+  return sel
+}
+function onQueryGet(sender, args) {
+issuesFetched = true
+var listItemEnumerator = collListItem.getEnumerator();
+//theUniqueID = "" //being precautious -- removed to save the flag on submit
+tmidGlobal = ""
+omidGlobal = ""
+daidGlobal = ""
+
+while (listItemEnumerator.moveNext()) {
+
+  oListItem = listItemEnumerator.get_current();
+
+  let ncnsIns = oListItem.get_item('ncnsIns')
+  let exBrIns= oListItem.get_item('hxht')
+  let exBrMins = oListItem.get_item('mort')
+  let snaHrs = oListItem.get_item('ok5i')
+  let snaIns = oListItem.get_item('_x0074_jm5')
+  let unPl = oListItem.get_item('vf7q')
+  let laLo = oListItem.get_item('re4p')
+  let noShow = oListItem.get_item('noShow')
+
+
+  let policyDev = oListItem.get_item('policyDev')
+  let devFact = oListItem.get_item('devFact')
+  let ped = oListItem.get_item('ped')
+  let chimeIss = oListItem.get_item('chimeIss')
+  let quipIss = oListItem.get_item('quipIss')
+  let emailIss = oListItem.get_item('emailIss')
+  let hrIssCount = oListItem.get_item('hrIssuesCount')
+  let otherIss = oListItem.get_item('otherIss')
+  let actionFlag = oListItem.get_item('actionFlag')
+
+  tmidGlobal = oListItem.get_item('_x0066_ng7')
+  omidGlobal = oListItem.get_item('_x0068_ya4')
+  daidGlobal = oListItem.get_item('Title')
+
+
+    console.log('week in loop',oListItem.get_item('cjdn'),weekSelGlobal)
+
+    if(actionFlag){//for the week action is taken
+      if(oListItem.get_item('cjdn')<weekSelGlobal){
+        //counting the instances of the weeks to bring the Action instances till date
+          if(oListItem.get_item('TDatNCNS') == "1")
+            TDatNCNScount++
+          if(oListItem.get_item('TDatNon') == "1")
+            TDatNoncount++
+          if(oListItem.get_item('TDatUnpl') == "1")
+            TDatUnplcount++
+          if(oListItem.get_item('TDprCompBr') == "1")
+            TDprCompBrcount++
+          if(oListItem.get_item('TDprCompScNon') == "1")
+            TDprCompScNoncount++
+          if(oListItem.get_item('TDprOtherNonSOP') == "1")
+            TDprOtherNonSOPcount++
+          if(oListItem.get_item('TDpoOpsPED') == "1")
+            TDpoOpsPEDcount++
+          if(oListItem.get_item('TDpoOpsChime') == "1")
+            TDpoOpsChimecount++
+          if(oListItem.get_item('TDpoOpsQuip') == "1")
+            TDpoOpsQuipcount++
+          if(oListItem.get_item('TDpoOpsEmail') == "1")
+            TDpoOpsEmailcount++
+          if(oListItem.get_item('TDprOtherOther') == "1")
+            TDprOtherOthercount++
+          if(oListItem.get_item('TDprOtherOther') == "1")
+            TDpoHROthercount++
+      }
+    }
+
+let nextTab = $('#issue-tab button').length;
+
+
+while(($('#compTable > thead > tr > th:nth-child(' + colDriver +')').text().substr(3) != oListItem.get_item('cjdn')) && colDriver<7){
+  colDriver++
+}
+//console.log('colDriver',colDriver,'week', oListItem.get_item('cjdn'),'noShow',noShow)
+      $('#compTable > tbody > tr:nth-child(1) > td:nth-child(' + colDriver + ')').text(exBrIns)
+      $('#compTable > tbody > tr:nth-child(2) > td:nth-child(' + colDriver + ')').text(exBrMins)
+      $('#compTable > tbody > tr:nth-child(3) > td:nth-child(' + colDriver + ')').text(snaIns)
+      $('#compTable > tbody > tr:nth-child(4) > td:nth-child(' + colDriver + ')').text(snaHrs)
+      $('#compTable > tbody > tr:nth-child(5) > td:nth-child(' + colDriver + ')').text(laLo)
+      $('#compTable > tbody > tr:nth-child(6) > td:nth-child(' + colDriver + ')').text(unPl)
+      $('#compTable > tbody > tr:nth-child(7) > td:nth-child(' + colDriver + ')').text(noShow)
+
+      $('#policyTable > tbody > tr:nth-child(1) > td:nth-child(' + colDriver + ')').text(ped)
+      $('#policyTable > tbody > tr:nth-child(2) > td:nth-child(' + colDriver + ')').text(chimeIss)
+      $('#policyTable > tbody > tr:nth-child(3) > td:nth-child(' + colDriver + ')').text(quipIss)
+      $('#policyTable > tbody > tr:nth-child(4) > td:nth-child(' + colDriver + ')').text(emailIss)
+      $('#policyTable > tbody > tr:nth-child(5) > td:nth-child(' + colDriver + ')').text(hrIssCount)
+
+let thisWeekJSONAr = oListItem.get_item('dataJSON')
+thisWeekJSONAr =  eval('(' + thisWeekJSONAr + ')');
+
+console.log('thisWeekJSONAr   ',thisWeekJSONAr)
+if(thisWeekJSONAr){
+  for(let i=3;i<thisWeekJSONAr.length;i++){
+
+/*    "issCat":"Process deviation",
+  "issSubCat":"Compliance",
+"actTak":"Verbal warning"
+,"desc":"Excess break of 1 instance(s), totaling 14.45 minutes for Week 30",
+"actInst":"1",
+"actDate":"8/7/2023"*/
+      if(thisWeekJSONAr[i].actTak == 'TM Exception'){
+        if(thisWeekJSONAr[i].theIssue == 'Issncns')
+          TDatNCNScount--
+        if(thisWeekJSONAr[i].theIssue == 'IssnonSop') //Late Login, doubt if other issues are coming
+          TDatNoncount--
+        if(thisWeekJSONAr[i].theIssue == 'IssunPl')
+          TDatUnplcount--
+        if(thisWeekJSONAr[i].theIssue == 'IssexBreak'){ //Excess Break and SNA
+          TDprCompBrcount--
+        if(thisWeekJSONAr[i].theIssue == 'IssscNon')
+          TDprCompScNoncount--
+        if(thisWeekJSONAr[i].theIssue == 'IssnonSop') //have to check if this is saved while saving 'Non-adherence to SOPs'
+          TDprOtherNonSOPcount--
+        if(thisWeekJSONAr[i].theIssue == 'Issped')
+          TDpoOpsPEDcount--
+        if(thisWeekJSONAr[i].theIssue == 'Isschime')
+          TDpoOpsChimecount--
+        if(thisWeekJSONAr[i].theIssue == 'Issquip')
+          TDpoOpsQuipcount--
+        if(thisWeekJSONAr[i].theIssue == 'Issemail')
+          TDpoOpsEmailcount--
+        if(thisWeekJSONAr[i].theIssue == 'Issother')
+          TDprOtherOthercount--
+        if(thisWeekJSONAr[i].theIssue == 'Isshr')
+          TDpoHROthercount--
+      }
+    }
+}
+
+if( weekSelGlobal == $('#compTable > thead > tr > th:nth-child(' + colDriver +')').text().substr(3)){
+//console.log('weekSelGlobal', actionFlag, oListItem.get_item('cjdn'))
+
+
+thisWeekPED = ped
+thisWeekChime = chimeIss
+thisWeekQuip = quipIss
+thisWeekEmail = emailIss
+thisWeekOther = otherIss
+thisWeekHr = hrIssCount
+
+    let actTaken = '<select class="form-select generatedAction actionTaken" aria-label="Action Taken"><option value="0" selected disabled>Select the Action Taken</option><option value="1">TM Exception</option>'
+
+    theUniqueID = oListItem.get_item('ID') //for the week of the associate
+
+
+
+//NCNS , Policy(HR) issues and Process->NonAdherence to SOP will be fetched from saved JSON
+if(actionFlag){//for the week action is taken// Data fetched form saved JSON and formatted
+    //-->
+    let currWeekJSONAr = oListItem.get_item('dataJSON') //for the week of the associate
+    //currWeekJSON = JSON.stringify(currWeekJSON)
+
+    //console.log(currWeekJSONAr)
+    //-->
+    currWeekJSONAr =  eval('(' + currWeekJSONAr + ')');
+
+    //console.log(currWeekJSONAr)
+    for(let i=3;i<currWeekJSONAr.length;i++){
+      let issCat = currWeekJSONAr[i].issCat
+      let issSubCat = currWeekJSONAr[i].issSubCat
+      let actTak = currWeekJSONAr[i].actTak
+      let desc = currWeekJSONAr[i].desc
+
+      let actInst = currWeekJSONAr[i].actInst
+      let actDate = currWeekJSONAr[i].actDate
+
+
+      nextTab++;
+
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>'+issCat+'</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>'+issSubCat+'</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+actInst+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+actDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTak+'</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td class="desc">'+desc+'</td>  </tr></tbody>         </table>'
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+' <i class="fa fa-circle-check"></i></button>').appendTo('#issue-tab')
+
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+    }
+}
+else {//data fetched from DB columns-->Automatic issues are populated
+    if(exBrIns>0){
+      TDprCompBrflag = true
+
+      let secondSel = TMoptionTwo(TDprCompBrcount)
+
+      nextTab++;
+      let descContent = "Excess break of " + exBrIns + " instance(s), totaling " +(exBrMins || 0)+" minutes for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Process deviation</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Compliance</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDprCompBrcount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>IssexBreak</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+    if(snaIns>0){
+      TDprCompScNonflag = true
+
+      let secondSel = TMoptionTwo(TDprCompScNoncount)
+
+
+      nextTab++;
+      let descContent = "Schedule Non-Adherence of " + snaIns + " instance(s), totaling " +(snaHrs||0)+" hours for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Process deviation</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Compliance</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDprCompBrcount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>IssscNon</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+    if(unPl>2){
+      TDatUnplflag = true
+
+      let secondSel = TMoptionTwo(TDatUnplcount)
+
+      nextTab++;
+      let descContent = "Unplanned leave of " + unPl + " instance(s) for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Attendance and punctuality</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Unscheduled absence</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDatUnplcount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>IssunPl</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+
+    if(laLo>0){
+      TDatNonflag = true
+
+      let secondSel = TMoptionTwo(TDatNoncount) //for now daNon is lateLogin count
+
+      nextTab++;
+      let descContent = "Late Login for " + laLo + " instance(s) for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Attendance and punctuality</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Non-adherence to work timings</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDatUnplcount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>IssLalo</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+
+
+    if(ped>0){
+      TDpoOpsPEDflag = true
+
+      let secondSel = TMoptionTwo(TDpoOpsPEDcount)
+
+      nextTab++;
+      let descContent = "PED usage of  " + ped + " instance(s) for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Policy</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>PED Usage</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDpoOpsPEDcount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>Issped</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+
+    if(chimeIss>0){
+      TDpoOpsChimeflag = true
+
+      let secondSel = TMoptionTwo(TDpoOpsChimecount)
+
+      nextTab++;
+      let descContent = "Chime Usage issue of  " + chimeIss + " instance(s) for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Policy</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Chime Usage</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDpoOpsChimecount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>Isschime</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+    if(quipIss>0){
+      TDpoOpsQuipflag = true
+
+      let secondSel = TMoptionTwo(TDpoOpsQuipcount)
+
+      nextTab++;
+      let descContent = "Quip usage issues of  " + quipIss + " instance(s) for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Policy</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Quip Usage</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDpoOpsQuipcount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>Issquip</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+    if(emailIss>0){
+      TDpoOpsEmailflag = true
+
+      let secondSel = TMoptionTwo(TDpoOpsEmailcount)
+
+      nextTab++;
+      let descContent = "Email usage issues of  " + emailIss + " instance(s) for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Policy</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Email Usage</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>'+TDpoOpsEmailcount+'</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td>'+actTaken+'<option value="2">'+secondSel+'</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>   </div></td>  </tr></tbody>         </table><span class="theAction" hidden>Issemail</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+
+    if(noShow>0){
+      //TDpoOpsEmailflag = true //should be converted to noshow
+
+      //let secondSel = TMoptionTwo(TDpoOpsEmailcount) //should be converted to noshowcount -> Approval pending
+
+      nextTab++;
+      let descContent = "Cab No-Show issues of  " + noShow + " instance(s) for Week " + weekSel
+      let content = '<table class="table table-bordered table-hover" id="items'+nextTab+'"><tbody>  <tr style="border-top: 0;">    <th scope="col" class="user-select-none">Issue Category</th>    <td>Attendance and punctuality</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Sub Category</th>    <td>Cab No-Show</td>  </tr>  <tr>    <th scope="col" class="user-select-none">Action Instance (MTD)</th><td>-NA-</td>  </tr> <tr>    <th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th>    <td>'+strDate+'</td>  </tr> <tr><th scope="col" class="user-select-none">Action Taken</th>    <td><select class="form-select generatedAction actionTaken" aria-label="Action Taken"><option value="0" selected disabled>Select the Action Taken</option><option value="1">Discussed with the DA</option></select></td>  </tr>  <tr>    <th scope="col" class="user-select-none">Issue Description</th>    <td><div class="form-group">    <textarea class="form-control desc" disabled>'+descContent+'</textarea>  </div></td>  </tr></tbody>         </table><span class="theAction" hidden>IssCabnoshow</span>'
+
+        //<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+
+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+        $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false">Issue '+nextTab+'</button>').appendTo('#issue-tab')
+        //'+nextTab+
+       //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+
+      $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+
+    }
+      //other issues HR and other are opulated by JSON not from table
+}
+}//end-of-else //i.e//Action is not taken //data fetched from DB columns
+$('#tabBut1').tab('show');
+
+//setting for only tab1 , others are let 
+$generatedText = $(".active > table > tbody > tr:nth-child(6) > td > div > textarea").val()
+
+
+$('button[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
+  let $generatedTextlet = ""
+    if( $(".active > table > tbody > tr:nth-child(6) > td > div > textarea").attr("disabled")){
+        $generatedTextlet = $(".active > table > tbody > tr:nth-child(6) > td > div > textarea").val()
+        //$writtenText = ""
+    }
+  //console.log('$generatedTextlet',$generatedTextlet)
+  $(".active > table > tbody > tr > td > .generatedAction").on('change', function(){
+  let $textarea = $(".active > table > tbody > tr:nth-child(6) > td > div > textarea")
+
+  //console.log('generated drop changed')
+    if($(this).val()==2){
+      if(! $textarea.attr("disabled"))
+          $writtenText = $textarea.val().trim()
+      $textarea.attr("disabled",true)
+      $textarea.val($generatedTextlet)
+    }
+    else{
+        $textarea.attr("disabled",false)
+    $textarea.val($writtenText)
+    $textarea.focus()
+  }
+});
+})
+
+$(".active > table > tbody > tr > td > .generatedAction").on('change', function(){
+  let $textarea = $(".active > table > tbody > tr:nth-child(6) > td > div > textarea")
+
+  //console.log('generated drop changed')
+    if($(this).val()==2){
+      if(! $textarea.attr("disabled"))
+          $writtenText = $textarea.val().trim()
+      $textarea.attr("disabled",true)
+      $textarea.val($generatedText)
+    }
+    else{
+        $textarea.attr("disabled",false)
+    $textarea.val($writtenText)
+    $textarea.focus()
+  }
+});
+
+
+  colDriver++
+}
+
+
+
+}//success-end
+
+function onQueryFailed(sender, args) {
+alert('Request failed. ' + args.get_message() +
+'\n' + args.get_stackTrace());
+}
+
+function appendInput(instance){
+  $('.active > table > tbody > tr > td > .actionTaken>option:nth-child(3)').remove()
+  switch(instance){
+    case 1:
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Verbal warning</option>')
+    break;
+    case 2:
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Documented Feedback</option>')
+    break;
+    case 3:
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>First written warning</option>')
+    break;
+    case 4:
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Second written warning</option>')
+    break;
+    case 5:
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Final written warning</option>')
+    break;
+    case 'cabNoShow':
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Discussed with the DA</option>')
+    break;
+    case 'hr':
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Email to HR</option>')
+    break;  
+    case 'manual':
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Documented Feedback</option>')
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>First written warning</option>')
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Second written warning</option>')
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Final written warning</option>')
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Discussed with the DA</option>')
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Email to HR</option>')
+    $('.active > table > tbody > tr > td > .actionTaken').append('<option selected>Email to HR</option>')
+    break;  
+  }
+}
+$('#btnAdd').click(function (e) {
+
+    let nextTab = $('#issue-tab button').length+1;
+
+  let content = '<table class="table table-bordered table-hover"><tbody>            <tr style="border-top:0">             <th scope="col" class="user-select-none">Issue Category</th>              <td>            <select class="form-select float-end cat" aria-label="Category Selection">              <option selected disabled >Select the category</option>             <option value="at">Attendance and punctuality</option>              <option value="prComp">Process (Compliance)</option>            <option value="prOther">Process (Other)</option>            <option value="poOps">Policy (Ops)</option>    <option value="poHr">Policy (HR)</option>         <option value="ot">Other</option>    </select>             </td>           </tr>           <tr>              <th scope="col" class="user-select-none">Sub Category</th>              <td>            <select class="form-select subcat" aria-label="Default select example">             <option selected disabled >Select the sub-category</option>           </select>             </td>           </tr>           <tr>              <th scope="col" class="user-select-none">Action Instance (MTD)</th>             <td></td>           </tr>           <tr><th scope="col" class="user-select-none">Action Date (MM/DD/YYYY)</th><td>'+strDate+'</td></tr> <tr>              <th scope="col" class="user-select-none">Action Taken</th>              <td>            <select class="form-select actionTaken" aria-label="Action Taken">              <option value="0" selected disabled>Select the Action Taken</option>              <option value="1">TM Exception</option></select>              </td>           </tr>                       <tr><th scope="col" class="user-select-none">Issue Description</th>              <td><div class="form-group">    <textarea class="form-control desc"> </textarea>  </div></td></tr>               </tbody>        </table><span class="theAction" hidden></span>'
+    // create the tab
+    //$('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
+    $('<button class="nav-link" id="tabBut'+nextTab+'" data-bs-toggle="tab" data-bs-target="#tab'+nextTab+'" type="button" role="tab" aria-controls="tab'+nextTab+'" aria-selected="false" >Issue '+nextTab+'  <i class="fa fa-trash"></i></button>').appendTo('#issue-tab')
+    
+    // create the tab content
+
+    $('<div class="tab-pane fade" id="tab'+nextTab+'"role="tabpanel" aria-labelledby="tab'+nextTab+'">'+content+'</div>').appendTo('#issue-tabContent');
+    
+    // make the new tab active
+    $('#issue-tab button:last').tab('show');
+
+    $('.h-100').hide()
+
+    //if($('#tabBut1').text())
+    $('#save').attr('hidden',false)   
+
+  $(".active > table > tbody > tr > td").on('change', '.cat', function(e) {//on category change
+       // Set selected option as variable
+       var selectValue = $(this).val();
+
+       // Empty the target field
+       $(".active > table > tbody > tr > td > .subcat").empty();
+       
+       $(".active > table > tbody > tr > td > .subcat").append("<option selected disabled>Select the sub-category</option>");
+
+       //$('#actionTaken').Attendance tr("<option selected disabled>Select the sub-category</option>");
+       //$('#actionTaken option[value=0]').attr('selected','selected');
+    $(".active > table > tbody > tr > td > .actionTaken").prop('selectedIndex',0);
+       // For each chocie in the selected option
+       for (let i = 0; i < lookup[selectValue].length; i++) {
+          // Output choice in the target field
+          $(".active > table > tbody > tr > td > .subcat").append("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+       }
+  });
+    $(".active > table > tbody > tr > td").on('change', '.subcat', function(e) {//on subcategory change
+
+      if($(".active > table > tbody > tr:nth-child(1) > td>select>option:selected").val() == 'poHr'){//based on Main Category
+          //Decision to be based on the recommendations of the HRBP/Legal team (if need be) after conducting a fact-finding exercise (Investigation process).
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDpoHROthercount);
+          appendInput('hr') //Verbal warning with HR in action 
+      }
+      else{
+      var selectedSubcat = $(this).val();
+      var selectedSubcat = $(this).val();
+
+$(".active > .theAction").text('')
+      switch(selectedSubcat){
+
+        case "NCNS (No Call No show)":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDatNCNScount);//Manualy added by TM
+          $(".active > .theAction").text('Issncns');
+          appendInput(TDatNCNScount)
+          break;
+
+        case "Non-adherence to work timings":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDatNoncount)
+          //$(".active > .theAction").text('IssexBreak');
+          appendInput(TDatNoncount)
+          break;
+
+        case "Unscheduled absence":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDatUnplcount)
+          //$(".active > .theAction").text('IssunPl');
+          appendInput(TDatUnplcount)
+          break;
+        case "Break Non-adherence":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDprCompBrcount)
+          //$(".active > .theAction").text('IssexBreak');
+          appendInput(TDprCompBrcount)
+          break;
+
+        case "Schedule Non-adherence":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDprCompScNoncount)
+          $(".active > .theAction").text('IssscNon');
+          appendInput(TDprCompScNoncount)
+          break;
+
+        case "Disclosing Confidential Information":
+          //direct final written warning
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDprOtherDisCocount)//Manualy added by TM
+          $(".active > .theAction").text('Isshr');
+          appendInput(5)
+          break;
+
+        case "Non-adherence to SOPs":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDprOtherNonSOPcount)//Manualy added by TM
+          appendInput(TDprOtherNonSOPcount)
+          break;
+
+        case "PED Usage":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDpoOpsPEDcount)
+          appendInput(TDpoOpsPEDcount)
+          break;
+
+        case "Chime Usage":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDpoOpsChimecount)
+          appendInput(TDpoOpsChimecount)
+          break;
+
+        case "Quip Usage":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDpoOpsQuipcount)
+          appendInput(TDpoOpsQuipcount)
+          break;
+
+        case "Email Usage":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDpoOpsEmailcount)
+          appendInput(TDpoOpsEmailcount)
+          break;
+
+        case "Other Deviations":
+          $(".active > table > tbody > tr:nth-child(3) > td").text(TDprOtherOthercount)////Manualy added by TM 
+          appendInput(TDprOtherOthercount)
+          break;
+
+        case "Cab No-Show":
+          $(".active > table > tbody > tr:nth-child(3) > td").text('-NA-')////Manualy added by TM 
+          appendInput('cabNoShow')
+          break;
+
+        default:
+          $(".active > table > tbody > tr:nth-child(3) > td").text(1)////Manualy added by TM //should work on the logic how to do this.
+          appendInput('manual')
+          break;
+        }//switch
+      }//else
+    });//onchange of subcaategory
+
+
+$(".fa-trash").on("click", function(){
+    let butNo = $(this).parent().text().substr(6).trim()
+    $.confirm({
+        title: 'Alert !',
+        content: 'Do you want to delete "Issue '+butNo+'"',
+        buttons: {
+            confirm: function () {
+              $('#issue-tabContent>.active').remove()
+              $('#issue-tab>.active').remove()
+              $('#issue-tab button:last').tab('show');
+                $.alert('Deleted "Issue '+butNo+'!');
+            },
+            cancel: function () {
+                $.alert('Canceled!');
+            }
+       }
+    });
+  });
+});
+
+    var lookup = {
+   'at': [
+  'NCNS (No Call No show)',
+  'Non-adherence to work timings',
+  'Unscheduled absence',
+  'Cab No-Show'
+     ],
+     'prComp': [
+  'Break Non-adherence',
+  'Schedule Non-adherence'
+  ],
+     'prOther': [
+  'Disclosing Confidential Information',
+  'Non-adherence to SOPs'
+  ],
+     'ot': [
+  'Other Deviations'
+     ],
+     'poOps': [
+  'PED Usage',
+  'Chime Usage',
+  'Quip Usage',
+  'Email Usage'
+     ],
+     'poHr': [
+  'Misconduct on the floor/ within office premises',
+  'Alcohol or drug abuse',
+  'Password sharing/tail gating',
+  'Theft',
+  'Misusing/Damaging Office Property',
+  'Workplace Harassment',
+  'Tampering with Attendance records ',
+  'Safety'
+     ]
+};
+
+// When an option is changed, search the above for matching choices
+//  document.querySelector$("#issue-tabContent > div > table > tbody > tr:nth-child(1) > td")
+
+
+  //document.querySelector(".active > table > tbody > tr:nth-child(1) > td")
+
+</script>
+
+<script>
+/*$(function () {
+week(MenuGetListItems, "sp.js");
+});*/
+
+
+var mgrDirects = [];
+
+$( document ).ready(function() {
+  var x = new XMLHttpRequest();
+  var doc;
+  let url = _spPageContextInfo.webAbsoluteUrl + "/_api/SP.UserProfiles.PeopleManager/GetMyProperties"
+  x.open("GET", url, true);
+  x.onreadystatechange = function () {
+    if (x.readyState == 4 && x.status == 200)
+    {
+      doc = x.responseXML;
+      //mgrDirects = [...doc.getElementsByTagName("d:ExtendedReports")[0].childNodes.textContent.substr(4)]
+      [...doc.getElementsByTagName("d:ExtendedReports")[0].childNodes].forEach(x=>ensureUserJS(x.textContent.substr(4)))
+      // …
+      //mgrDirects.forEach(x=>)
+    }
+  };
+  x.send(null);
+});
+
+
+function ensureUserJS(x){
+
+    var siteUrl = 'https://share.amazon.com/sites/CAG2.0';
+  
+  // Replace "loginName" with the login name of the person you want to validate
+
+  // Get the current SharePoint context
+  var context = new SP.ClientContext(siteUrl);
+  
+  // Ensure the user is valid
+  var user = context.get_web().ensureUser(x);
+  
+  // Load the user information
+  context.load(user);
+  
+  // Execute the request
+  context.executeQueryAsync(
+    function() {
+      // The user is valid
+      //console.log('Person is a valid SharePoint user');
+      //$('#mgr').append('<option>'+x+'</option>')
+      mgrDirects.push(x)
+    },
+    function(sender, args) {
+      // An error occurred or the user is invalid
+      //console.log('Person is not a valid SharePoint user');
+
+    }
+  );
+}
+
+
+
+var daFilSel
+
+$('#daFilter').change(function(){
+  daFilSel = this.value;
+
+$('#daLogin option:not(:first)').remove()
+
+/*  if(daFilSel == 1){//if DAs with issues is selected
+      daLogins.forEach(x=>{
+        if(x.issueFlag == true)
+          $('#daLogin').append('<option>' + (x.name) + '</option>');
+      });
+  }
+  else */
+  if(daFilSel == 2){ //if DAs not actioned is selected
+      daLogins.forEach(x=>{
+        if(x.actionFlag == 0)
+          $('#daLogin').append('<option>' + (x.name) + '</option>');
+      });
+  }
+  else if(daFilSel == 3){ 
+      /*daLogins.forEach(x=>{
+          $('#daLogin').append('<option>' + (x.name) + '</option>');
+      });*/
+      mgrDirects.forEach(x=>{
+          $('#daLogin').append('<option>' + x + '</option>');
+      });
+  }
+
+});
+
+
+$('#week').change(function(){
+  let m = _spPageContextInfo.userLoginName.substr(4)
+
+  let w = Number(this.value);
+
+$('#daLogin option:not(:first)').remove()
+
+  daLogins =[]
+
+//console.log('week',m,w)
+  MenuGetListItems(m,w)
+});
+
+var collListItem;
+
+function MenuGetListItems(mgr,weekSel) {
+
+if($('#daFilter option:selected').val() == 3){
+  mgrDirects.forEach(x=>{
+    $('#daLogin').append('<option>' + x + '</option>');
+  });
+  $('#daLogin option:eq(1)').prop('selected', true)
+  findingFunction()
+  return
+}
+var clientContext = new SP.ClientContext();
+var oList = clientContext.get_web().get_lists().getByTitle('CAGmain');
+
+
+var camlQuery = new SP.CamlQuery();
+
+camlQuery.set_viewXml('<View><Query><Where><And><Eq><FieldRef Name=\'_x0066_ng7\'/>' + '<Value Type=\'Text\'>' + mgr + '</Value></Eq><Eq><FieldRef Name=\'cjdn\'/><Value Type=\'Number\'>' + weekSel + '</Value></Eq></And></Where></Query></View>'); 
+
+collListItem = oList.getItems(camlQuery);
+
+clientContext.load(collListItem);
+clientContext.executeQueryAsync(
+Function.createDelegate(this, this.onQueryMenuGet),Function.createDelegate(this, this.onQueryFailed));
+}
+
+function onQueryMenuGet(sender, args) {
+
+var listItemEnumerator = collListItem.getEnumerator();
+let daFilSel = $('#daFilter option:selected').val()
+
+
+while (listItemEnumerator.moveNext()) {
+  var oListItem = listItemEnumerator.get_current();
+  let da = {}
+
+  da['name'] = oListItem.get_item('Title');
+  da['issueFlag'] = oListItem.get_item('issueFlag');
+  da['actionFlag'] = oListItem.get_item('actionFlag');
+
+  daLogins.push(da)
+
+  //console.log(da.name, da.issueFlag, da.actionFlag)
+
+  /*if(daFilSel == 0){//if DAs with issues is selected
+    if (da.issueFlag == true) { //issue is there 
+      const thisDa = da.name
+      $('#daLogin').append('<option>' + (thisDa) + '</option>');
+    }
+  }
+  else*/ 
+  if(daFilSel == 1){ //if DAs not actioned is selected
+
+    if (da.actionFlag == 0) { //action is pending
+      const thisDa = da.name
+      $('#daLogin').append('<option>' + (thisDa) + '</option>');
+    }
+  }/*
+  else if(daFilSel == 3){ 
+      $('#daLogin').append('<option>' + (da.name) + '</option>');
+  }*/
+  //daLogins.filter(x=>x.issueFlag == 0)
+
+//const person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+    //$('#daLogin').append('<option>' + da + '</option>');
+}//end of while
+            //set Not Actioned only in the beginning
+            daLogins.forEach((x,i)=>{
+              //console.log(x.actionFlag)
+
+              if(x.actionFlag == 0){
+                $('#daLogin').append('<option>' + (x.name) + '</option>');
+              }
+              
+            });
+
+                $('#daLogin option:eq(1)').prop('selected', true)
+                findingFunction()
+
+}
+
+function onQueryFailed(sender, args) {
+alert('Request failed. ' + args.get_message() +
+'\n' + args.get_stackTrace());
+}
+</script>
+<script type="text/javascript">
+var listItem;
+function saveCaml(uniqID) {
+//setTimeout(resetEmail, 100);
+
+//To Associate
+$('.badge').empty()
+
+$('#emailAss-to').append('<span class="badge bg-secondary text-wrap">'+daidGlobal+';</span>') //da
+$('#emailAss-cc').append('<span class="badge bg-secondary text-wrap">'+tmidGlobal+';</span>') //tm
+
+//To Om
+$('#emailOm-to').append('<span class="badge bg-secondary text-wrap">'+omidGlobal+';</span>') //om
+
+$('#emailOm-cc').append('<span class="badge bg-secondary text-wrap">'+tmidGlobal+';</span>')//tm
+$('#emailOm-cc').append('<span class="badge bg-secondary text-wrap">'+daidGlobal+';</span>')//da
+
+//cc to OM
+$('#emailHr-cc').append('<span class="badge bg-secondary text-wrap">'+omidGlobal+';</span>')//hr email - cc to OM
+
+
+var clientContext = new SP.ClientContext.get_current();
+var list = clientContext.get_web().get_lists().getByTitle('CAGmain');
+this.listItem = list.getItemById(uniqID);
+
+clientContext.load(listItem);
+
+//listItem.set_item('owshiddenversion', listItem.get_item('owshiddenversion')); //ensure you are updating the current version only 
+
+      if(TDatNCNSflag)
+        listItem.set_item('TDatNCNS','1')
+      if(TDatNonflag)
+        listItem.set_item('TDatNon','1')
+      if(TDatUnplflag)
+        listItem.set_item('TDatUnpl','1')
+      if(TDprCompBrflag)
+        listItem.set_item('TDprCompBr','1')
+      if(TDprCompScNonflag)
+        listItem.set_item('TDprCompScNon','1')
+      /*if(TDprOtherDisCoflag)
+      listItem.set_item('TDprOtherDisCo','1')*///Not needed
+      if(TDprOtherNonSOPflag)
+        listItem.set_item('TDprOtherNonSOP','1')
+      if(TDpoOpsPEDflag)
+        listItem.set_item('TDpoOpsPED','1')
+      if(TDpoOpsChimeflag)
+        listItem.set_item('TDpoOpsChime','1')
+      if(TDpoOpsQuipflag)
+        listItem.set_item('TDpoOpsQuip','1')
+      if(TDpoOpsEmailflag)
+        listItem.set_item('TDpoOpsEmail','1')
+      if(TDpoHROtherflag)
+        listItem.set_item('TDpoHROther','1')
+
+
+      listItem.set_item('TDprOtherOther',TDprOtherOthercount)
+      listItem.set_item('TDpoHROther',TDpoHROthercount)
+
+      //listItem.set_item('actionFlag','1')
+
+    let issCount = $('#issue-tab>button').length
+    var hrIssuesCount = 0,
+      pedIssCount = 0,
+      chimeIssCount = 0,
+      quipIssCount = 0,
+      emailIssCount = 0,
+      otherIssCount = 0,
+      maxInst = 0,
+      exceptionCount = 0;
+
+      emailTemp = "Dear @" +daidGlobal+",\n\nBringing to your attention that in Week " +weekSelGlobal+", we have noticed that there were instances of deviations in the below metrics."
+      
+      emailTemp2 = "Hi,\n\nBringing to your attention that in Week " +weekSelGlobal+", exceptions were given for @"+daidGlobal+" for the below deviations"
+      
+      emailTemp3 = "Hi,\n\nBringing to your attention that in Week " +weekSelGlobal+", Policy violation was raised @"+daidGlobal+" for the below deviations "
+
+    $('#emailBut1').attr('disabled',false)
+    $('#sendEmailBut').attr('disabled',false)
+
+    for(let i = 1 ; i<=issCount; i++){
+      let issuesJson = {}
+      let cat = $("#tab"+i+" > table > tbody > tr:nth-child(1) > td > select> option:selected").text() || $("#tab"+i+" > table > tbody > tr:nth-child(1) > td").text()
+      let subCat = $("#tab"+i+" > table > tbody > tr:nth-child(2) > td > select> option:selected").text() || $("#tab"+i+" > table > tbody > tr:nth-child(2) > td").text()
+      let action = $("#tab"+i+" > table > tbody > tr:nth-child(5) > td > select option:selected").text() || $("#tab"+i+" > table > tbody > tr:nth-child(5) > td").text()
+      let desCrip = $("#tab"+i+" > table > tbody > tr:nth-child(6) > td > div > textarea").val() || $("#tab"+i+" > table > tbody > tr:nth-child(6) > td").text();
+      let actionInst = $("#tab"+i+" > table > tbody > tr:nth-child(3) > td").text()
+      let actionDate = $("#tab"+i+" > table > tbody > tr:nth-child(4) > td").text()
+
+
+      maxInst = Math.max(maxInst,Number(actionInst))
+
+      issuesJson["issCat"] =   cat
+      issuesJson["issSubCat"] =  subCat
+      issuesJson["actTak"] =  action
+      issuesJson["desc"] =  desCrip
+
+      issuesJson["actInst"] =  actionInst
+      issuesJson["actDate"] =  actionDate
+
+    if(action == 'TM Exception'){
+      exceptionCount += 1
+      console.log('exceptionCount',exceptionCount,'issCount',issCount)
+      if(exceptionCount == issCount){
+        $('#emailBut1').attr('disabled',true)
+        $('#emailBut2').tab('show');
+      }
+      emailTemp2 += "\n\nCategory: "+cat+"\nSub-category: "+subCat+"\nManager Actioned: "+actionInst+" time(s) this month.\nDescription: "+desCrip;
+          $('#emailBut2').attr('disabled',false)
+
+    }
+    else if(cat == 'Policy (HR)'){
+      emailTemp3 += "\n\nCategory: "+cat+"\nSub-category: "+subCat+"\nManager Actioned: "+actionInst+" time(s) this month.\nDescription: "+desCrip;
+      $('#emailBut3').attr('disabled',false)
+    }
+    else{
+      emailTemp += "\n\nCategory: "+cat+"\nSub-category: "+subCat+"\nManager Actioned: "+actionInst+" time(s) this month.\nDescription: "+desCrip;
+    }
+      issuesGlobalArray[i+2] = issuesJson
+
+      if(cat == "Policy (HR)"){
+        hrIssuesCount++
+        //alert("Policy (HR) ",hrIssuesCount)
+      }
+      else if(cat == "Policy (Ops)"){
+        switch(subCat){
+          case 'PED Usage':
+          pedIssCount++
+          break;
+
+          case 'Chime Usage':
+          chimeIssCount++
+          break;
+
+          case 'Quip Usage':
+          quipIssCount++
+          break;
+
+          case 'Email Usage':
+          emailIssCount++
+          break;
+
+        }
+      }
+      else if(cat == "Other"){
+          otherIssCount++
+        }
+    }//end of for 
+
+  emailTemp += "\n\n •  Please note that your manager has actioned "+ (maxInst || 1) +" times(s) for the month "+monthGlobal+" "+yearGlobal+"\n•  Please note that meeting the said metrics is crucial for maintaining a productive work environment.\nWe kindly request your cooperation in ensuring that you are abiding to the company’s policies. If you are facing any challenges or require assistance, please reach out to your Team manager for support. Your commitment to improving in this area is greatly appreciated.\n\nThank you, \nCAG Core Team"
+
+  emailTemp2 += "\n\nThank you, \nCAG Core Team"
+  emailTemp3 += "\n\nThank you, \nCAG Core Team"
+
+  /*console.log(emailTemp)*/
+
+
+  $('#inputTemp1').val(emailTemp)
+  $('#inputTemp2').val(emailTemp2)
+  $('#inputTemp3').val(emailTemp3)
+
+  hrIssuesCount += thisWeekHr
+  pedIssCount += thisWeekPED
+  chimeIssCount += thisWeekChime
+  quipIssCount += thisWeekQuip
+  emailIssCount +=thisWeekEmail 
+  otherIssCount += thisWeekOther
+
+  listItem.set_item('ped', pedIssCount);
+  listItem.set_item('chimeIss', chimeIssCount);
+  listItem.set_item('quipIss', quipIssCount);
+  listItem.set_item('emailIss', emailIssCount);
+  listItem.set_item('hrIssuesCount', hrIssuesCount);
+  listItem.set_item('otherIss', otherIssCount);
+
+  const issuesSave = JSON.stringify(issuesGlobalArray)
+
+
+  listItem.set_item('dataJSON', issuesSave);
+
+/*  let currentVersion = listItem.get_item('owshiddenversion');
+  console.log(currentVersion)
+currentVersion += ".0"
+  console.log(currentVersion)
+   listItem.set_item('owshiddenversion', currentVersion);*/
+
+
+  listItem.update();
+
+
+  clientContext.executeQueryAsync(Function.createDelegate(this, this.onSaveCaml), Function.createDelegate(this, this.onQueryFailed));
+
+}
+
+function onSaveCaml() {
+$("#issue-tabContent > div > table > tbody > tr> td > select").attr("disabled",true)
+$("#issue-tabContent > div > table > tbody > tr> td > div > textarea").attr("disabled",true)
+//$('#btnAdd').attr("disabled",true)
+
+$.alert('Data saved successfully !\n Now you can review the generated email(s) and send them.');
+//theUniqueID = "" //saving multiple times
+TDatNCNSflag = false
+TDatNonflag = false
+TDatUnplflag = false
+TDprCompBrflag = false
+TDprCompScNonflag = false
+//TDprOtherDisCoflag = false //Not needed
+TDprOtherNonSOPflag = false
+TDpoOpsPEDflag = false
+TDpoOpsChimeflag = false
+TDpoOpsQuipflag = false
+TDpoOpsEmailflag = false
+TDpoHROtherflag = false
+//getListItems(daidGlobal,start,end);
+
+/*var htmlContent = $('html').html();
+sessionStorage.setItem('savedHTML', htmlContent);
+
+window.location.reload(true);*/
+}
+
+function onQueryFailed(sender, args) {
+$.alert('Could not able to update item: ' + args.get_message());
+}
+
+
+</script>
+
+<!-- SP-QUERY-END -->
+<script>
+function sendEMail(toList,ccList,bccList,subject, mailContent) {
+    appweburl = "https://share.amazon.com/sites/CAG2.0";
+    var restUrl = appweburl + "/_api/SP.Utilities.Utility.SendEmail",
+    restHeaders = {
+        "Accept": "application/json;odata=verbose",
+        "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+        "Content-Type": "application/json;odata=verbose"
+    },
+    mailObject = {
+        'properties': {
+            '__metadata': {
+                'type': 'SP.Utilities.EmailProperties'
+            },
+            'To': {
+                'results': toList
+            },
+            'CC': {
+                'results': ccList
+            },
+            'BCC': {
+                'results': bccList
+            },
+            'Subject': subject,
+            'Body': mailContent,
+            "AdditionalHeaders":
+                {
+                    "__metadata":{ "type": "Collection(SP.KeyValue)" },
+                    "results":
+                    [
+                        {
+                            "__metadata": {
+                                "type": 'SP.KeyValue'
+                            },
+                            "Key": "content-type",
+                            "Value": 'text/html',
+                            "ValueType": "Edm.String"
+                        }
+                    ]
+                }            
+        }
+    };
+    return $.ajax({
+        contentType: "application/json",
+        url: restUrl,
+        type: "POST",
+        data: JSON.stringify(mailObject),
+        headers: restHeaders
+    });
+} 
+
+</script>
+
+<script>
+$('#sendEmailBut').click(function(event) {
+
+event.preventDefault(); // Prevent the default form submission behavior
+//$.alert("sending email");
+var toUserList = ["kkathire@amazon.com", "prasujit@amazon.com"];
+var ccUserList = ["peesyed@amazon.com"];
+var bccUserList = ["prasujit@amazon.com","ekambam@amazon.com"];
+//var toUserList = ["mdmuzh@amazon.com" , "ekambam@amazon.com"];
+//Subject of the Email.
+var mailSubject = "Compliance Deviation - "+weekSelGlobal;
+//HTML formatted Email Body.
+
+var mailContent = emailTemp.replace(/\n/g,'<br>');;
+var mailContent2 = emailTemp2.replace(/\n/g,'<br>');;
+var mailContent3 = emailTemp3.replace(/\n/g,'<br>');;
+
+console.log(daidGlobal)
+
+//omidGlobal
+//tmidGlobal
+if(!$('#emailBut1').attr('disabled')){
+  sendEMail([daidGlobal+"@amazon.com"],[tmidGlobal+"@amazon.com"],bccUserList,mailSubject ,mailContent).done(function (response) {
+  //sendEMail(["ekambam@amazon.com"],["prasujit@amazon.com"],[],mailSubject ,mailContent).done(function (response) {
+        updateActionFlag()
+    }).fail(function () {
+      alert("Error while sending an E-Mail.");
+  });
+}
+
+if(!$('#emailBut2').attr('disabled')){
+  sendEMail([omidGlobal+"@amazon.com"],[tmidGlobal+"@amazon.com",daidGlobal+"@amazon.com"],bccUserList,mailSubject ,mailContent2).done(function (response) {
+  //sendEMail(["ekambam@amazon.com"],["prasujit@amazon.com"],[],mailSubject ,mailContent2).done(function (response) {
+            updateActionFlag()
+  }).fail(function () {
+      alert("Error while sending an E-Mail.");
+  });
+}
+if(!$('#emailBut3').attr('disabled')){
+  sendEMail([omidGlobal+"@amazon.com"],[tmidGlobal+"@amazon.com",daidGlobal+"@amazon.com"],bccUserList,mailSubject ,mailContent3).done(function (response) {
+  //sendEMail(["ekambam@amazon.com"],["prasujit@amazon.com"],[],mailSubject ,mailContent3).done(function (response) {
+            updateActionFlag()
+  }).fail(function () {
+      alert("Error while sending an E-Mail.");
+  });
+}
+
+});
+
+//update action flag
+function updateActionFlag() {
+var clientContext = new SP.ClientContext.get_current();
+var list = clientContext.get_web().get_lists().getByTitle('CAGmain');
+var listItem = list.getItemById(theUniqueID);
+clientContext.load(listItem)
+
+clientContext.executeQueryAsync(function () {
+         gracefulUpdateActionFl()
+ })
+
+}
+
+function gracefulUpdateActionFl(){
+var clientContext = SP.ClientContext.get_current();
+listItem.set_item('actionFlag','1')
+listItem.update();
+clientContext.executeQueryAsync(Function.createDelegate(this, this.onQueryupdateActionFlag), Function.createDelegate(this, this.onQueryFailedupdateActionFlag)
+);
+
+}
+
+function onQueryupdateActionFlag() {
+    alert("E-Mail(s) Sent successfully.");
+    window.location.reload(true);
+}
+
+function onQueryFailedupdateActionFlag(sender, args) {
+console.log('Could not able to update Action: ' + args.get_message());
+}
+
+</script>
+</body>
+</html>

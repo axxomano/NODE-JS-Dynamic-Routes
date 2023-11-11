@@ -16,6 +16,7 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const usersRoutes = require('./routes/users');
+const expenseRoutes = require('./routes/expenses');
 
 
 app.use(bodyParser.json({ extended: false })); //EJS supports .urlencoded
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminRoutes);
 app.use('/users', usersRoutes);
+app.use('/expense', expenseRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
