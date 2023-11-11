@@ -42,7 +42,6 @@ exports.getEditProduct = (req, res, next) => {
       product : product
     });
   }).catch(err=> console.log(err))
-
 };
 
 
@@ -56,6 +55,8 @@ exports.getProducts = (req, res, next) => {
     });
   }).catch(err=>console.log(err));
 };
+
+
 
 exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId
@@ -87,5 +88,4 @@ exports.postDeleteProduct = (req,res,next) => {
     res.redirect('/admin/products')
   })
   .catch(err=>console.log(err))
-  
 }
