@@ -6,12 +6,19 @@ const bodyParser = require('body-parser');
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database')
 const Product = require('./models/product')
-const User = require('./models/user')
+const Cart = require('./models/cart')
+const CartItem = require('./models/cart-item')
+
+const UserTwo = require('./models/userTwo')
 
 const cors = require('cors')
 const app = express();
 
 app.use(cors())
+
+
+app.use(bodyParser.urlencoded({ extended: true })); //EJS supports .urlencoded
+app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -22,10 +29,9 @@ const usersRoutes = require('./routes/users');
 const expenseRoutes = require('./routes/expenses');
 
 
-app.use(bodyParser.json({ extended: false })); //EJS supports .urlencoded
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req,res,next)=>{
-    User.findByPk(1).then(user=>{
+    UserTwo.findByPk(1).then(user=>{
         req.user = user;
         next()
     })
@@ -38,18 +44,24 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-Product.belongsTo(User, {constraints:true, onDelete: 'CASCADE'})
-User.hasMany(Product)
+Product.belongsTo(UserTwo, {constraints:true, onDelete: 'CASCADE'})
+UserTwo.hasMany(Product)
+UserTwo.hasOne(Cart)
+Cart.belongsTo(UserTwo)
+Cart.belongsToMany(Product, { through:CartItem })
+Product.belongsToMany(Cart, { through:CartItem })
 
-sequelize.sync({force:true}).then(result =>{
+sequelize.sync({force:false}).then(result =>{
     //console.log(result)
-    return User.findByPk(1)
+    return UserTwo.findByPk(1)
 }).then(user =>{
     if(!user){
-        return User.create({name:'Mano', email:'test@test.com'})
+        return UserTwo.create({name:'Mano', email:'test@test.com'})
     }
-    return user
+    return Promise.resolve(user)    
 }).then(user =>{
+    user.createCart()
+}).then(cart=>{
     app.listen(3000)
 })
 .catch( err => console.log(err))
